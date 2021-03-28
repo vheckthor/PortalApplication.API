@@ -11,7 +11,7 @@ namespace PortalApplication.Core.Data
         {
             _context= context;
         }
-        public User Register(User user, string password)
+        public UserModel Register(UserModel user, string password)
         {
             return user;
         }

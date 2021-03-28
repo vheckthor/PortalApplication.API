@@ -5,6 +5,6 @@ namespace PortalApplication.Core.Data
 {
     public interface IAuthRepository
     {
-         Task<User> Register(User user, string password);
+         Task<UserModel> Register(UserModel user, string password);
     }
 }
