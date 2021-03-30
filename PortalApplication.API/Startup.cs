@@ -39,6 +39,8 @@ namespace PortalApplication.API
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "PortalApplication.API", Version = "v1" });
             });
+            
+            services.AddScoped<IAuthRepository, AuthRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
