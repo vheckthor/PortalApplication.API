@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-
-
+using PortalApplication.Core.Models;
 
 namespace PortalApplication.Infrastructure.DataAccess
 {
@@ -11,7 +10,7 @@ namespace PortalApplication.Infrastructure.DataAccess
 
         }
 
-
+        public DbSet<UserModel> Users { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

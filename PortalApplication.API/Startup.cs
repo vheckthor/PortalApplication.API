@@ -2,11 +2,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using PortalApplication.Infrastructure.DataAccess;
 using PortalApplication.Infrastructure.Extensions;
 using System;
 using System.Collections.Generic;
@@ -27,7 +29,10 @@ namespace PortalApplication.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly(
+                "PortalApplication.API"
+            )), ServiceLifetime.Singleton);
             services.AddControllers();
             services.ResolveInfrastructureServices(Configuration);
             services.AddSwaggerGen(c =>
