@@ -1,4 +1,6 @@
+using System;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using PortalApplication.Core.Models;
 
 namespace PortalApplication.Infrastructure.DataAccess
@@ -15,14 +17,38 @@ namespace PortalApplication.Infrastructure.DataAccess
             throw new System.NotImplementedException();
         }
 
-        public Task<UserModel> Register(UserModel user, string password)
+        public async Task<UserModel> Register(UserModel user, string password)
         {
-            throw new System.NotImplementedException();
+            byte[] hashPassword, saltPassword;
+            
+            // passing hashPassword and saltPassword as reference to this method
+            CreatePasswordHash(password, out hashPassword, out saltPassword);
+            
+            user.HashPassword = hashPassword;
+            user.SaltPassword = saltPassword;
+            
+            await _context.AddAsync(user);
+            await _context.SaveChangesAsync();
+            
+            return user;
         }
 
-        public Task<bool> UserExists(string email)
+        private void CreatePasswordHash(string password, out byte[] hashPassword, out byte[] saltPassword)
         {
-            throw new System.NotImplementedException();
+            using (var hmac = new System.Security.Cryptography.HMACSHA512()) 
+            {
+                saltPassword = hmac.Key;
+                hashPassword = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        public async Task<bool> UserExists(string email)
+        {
+            if (await _context.Users.AnyAsync(x => x.Email == email)) {
+                return true;
+            }
+            
+            return false;
         }
     }
 }
