@@ -12,9 +12,35 @@ namespace PortalApplication.Infrastructure.DataAccess
         {
             _context = context;
         }
-        public Task<UserModel> Login(string email, string password)
+        public async Task<UserModel> Login(string email, string password)
         {
-            throw new System.NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            
+            if (user == null) {
+                return null;
+            }
+            
+            if(!DoesPasswordHashMatch(password, user.SaltPassword, user.HashPassword)){
+                return null;
+            }
+            
+            return user;
+        }
+
+        private bool DoesPasswordHashMatch(string password, byte[] saltPassword, byte[] hashPassword)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(saltPassword)) 
+            {
+                var computeHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                
+                for (int i = 0; i < computeHash.Length; i++)
+                {
+                    if(computeHash[i] != hashPassword[i]){
+                        return false;
+                    }
+                }
+            }
+            return true;
         }
 
         public async Task<UserModel> Register(UserModel user, string password)
