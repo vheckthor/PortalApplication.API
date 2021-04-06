@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using PortalApplication.Core.Models;
 
 namespace PortalApplication.Infrastructure.DataAccess
@@ -21,7 +22,6 @@ namespace PortalApplication.Infrastructure.DataAccess
             }
 
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
