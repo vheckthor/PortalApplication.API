@@ -1,0 +1,27 @@
+{
+  "exclude": [
+    "**/bin",
+    "**/bower_components",
+    "**/jspm_packages",
+    "**/node_modules",
+    "**/obj",
+    "**/platforms"
+  ],
+
+  "NewRegistration": {
+    "Fullname": "string",
+    "PhoneNumber": "string",
+    "Email": "string",
+    "DOB": "number",
+    "Role": "string",
+    "TetInstitution": "string",
+    "ClassOfDegree": "string",
+    "YearofExperience": "integer",
+    "CurrentRole": "string",
+    "CurrentEmployer": "string",
+    "ProfessionalCertificate": "string",
+    "WhyRole": "string",
+    "RelevantSkills": "string",
+    "CV": ""
+  }
+}
