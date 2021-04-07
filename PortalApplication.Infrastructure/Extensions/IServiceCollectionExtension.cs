@@ -38,7 +38,7 @@ namespace PortalApplication.Infrastructure.Extensions
             services.ConfigureDBContextPool(config);
            
             services.AddSingleton<IFileLogger, AppLoggerService>();
-
+            services.AddScoped<IContactFormRepository, ContactFormRepository>();
 
         }
 
