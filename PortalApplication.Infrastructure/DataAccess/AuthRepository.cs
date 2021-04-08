@@ -1,4 +1,6 @@
 using System;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using PortalApplication.Core.Models;
@@ -52,7 +54,27 @@ namespace PortalApplication.Infrastructure.DataAccess
             
             user.HashPassword = hashPassword;
             user.SaltPassword = saltPassword;
+            user.IsVerified = false;
             
+                var smtpClient = new SmtpClient("smtp.gmail.com")
+                {
+                    Port= 587,
+                    Credentials = new NetworkCredential("jimaxsolution360@gmail.com", "olaideolaide"),
+                    EnableSsl = true
+                };
+                
+                var mailMessage = new MailMessage
+            {
+                From = new MailAddress("jimaxsolution360@gmail.com"),
+                Subject = "Sidmach - Confirm your account",
+                Body = "<h1>Hello</h1>",
+                IsBodyHtml = true,
+            };
+            mailMessage.To.Add(user.Email);
+                
+                smtpClient.Send(mailMessage);
+                // smtpClient.Send("jimaxsolution360@gmail.com", user.Email, "subject", "body");
+                        
             await _context.AddAsync(user);
             await _context.SaveChangesAsync();
             
@@ -75,6 +97,21 @@ namespace PortalApplication.Infrastructure.DataAccess
             }
             
             return false;
+        }
+        
+        public async Task<UserModel> GetUser(int id) {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            
+            return user;
+        }
+
+        public async Task<bool> VerifyUser(UserModel user)
+        {
+            user.IsVerified = true;
+            await _context.AddAsync(user);
+            await _context.SaveChangesAsync();
+            
+            return true;
         }
     }
 }
