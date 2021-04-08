@@ -36,7 +36,7 @@ namespace PortalApplication.Core.Dtos
         [Required]
         public string WhyRole { get; set; }
         [Required]
-        public List<string> RelevantSkills { get; set; }
+        public string RelevantSkills { get; set; }
         [Required]
         public IFormFile CV { get; set; }
      }
