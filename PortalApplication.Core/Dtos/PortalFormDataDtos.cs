@@ -31,7 +31,9 @@ namespace PortalApplication.Core.Dtos
         public string CurrentRole { get; set; }
         [Required]
         public string CurrentEmployer { get; set; }
-        
+        [Required]
+        public Guid JobID { get; set; }
+
         public string ProfessionalCertificate { get; set; }
         [Required]
         public string WhyRole { get; set; }
