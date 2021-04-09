@@ -24,6 +24,8 @@ namespace PortalApplication.Core.Models
         public string WhyRole { get; set; }
         public string RelevantSkills { get; set; }
         public IFormFile CV { get; set; }
+        public string CVLink { get; set; } 
+        public Guid JobID { get; set; }
         public DateTime DateCreated { get; set; }
 
         public PortalFormData()
