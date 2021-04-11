@@ -85,6 +85,18 @@ namespace PortalApplication.API.Controllers
             });
             
         }
+        
+        [HttpGet("verify-user/{id}")]
+        public async Task<IActionResult> VerifyUser(int id)
+        {
+            var user = await _repo.GetUser(id);
+            if (user == null) 
+            {
+                return NotFound("User does not exist");
+            }
+            var isVerified = await _repo.VerifyUser(user);
 
+            return Ok("Verification succeessful.");
+        }
     }
 }

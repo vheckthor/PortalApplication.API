@@ -1,0 +1,6 @@
+------------------------------------------------------------------------------------
+Event Time: 10:32:23 | SQL Server service has been paused. No new connections will be allowed. To resume the service, use SQL Computer Manager or the Services application in Control Panel.
+Login failed for user ''. An error occured during migrations
+
+------------------------------------------------------------------------------------
+
