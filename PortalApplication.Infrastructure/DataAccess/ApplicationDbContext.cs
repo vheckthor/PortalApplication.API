@@ -13,6 +13,7 @@ namespace PortalApplication.Infrastructure.DataAccess
 
         public DbSet<UserModel> Users { get; set; }
         public DbSet<ContactFormModel> ContactForms { get; set; }
+        public DbSet<VacancyModel> Vacancy { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
