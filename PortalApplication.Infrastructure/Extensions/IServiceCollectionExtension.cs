@@ -41,6 +41,7 @@ namespace PortalApplication.Infrastructure.Extensions
             services.AddScoped<IContactFormRepository, ContactFormRepository>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IVacancyRepository, VacancyRepository>();
+            services.AddScoped<IPortalFormRepository, PortalFormRepository>();
 
         }
 
