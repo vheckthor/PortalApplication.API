@@ -39,6 +39,8 @@ namespace PortalApplication.Infrastructure.Extensions
            
             services.AddSingleton<IFileLogger, AppLoggerService>();
             services.AddScoped<IContactFormRepository, ContactFormRepository>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddScoped<IVacancyRepository, VacancyRepository>();
             services.AddScoped<IPortalFormRepository, PortalFormRepository>();
 
         }

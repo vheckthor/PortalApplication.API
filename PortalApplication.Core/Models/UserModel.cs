@@ -10,6 +10,7 @@ namespace PortalApplication.Core.Models
         public string LastName { get; set; }
         public byte[] HashPassword { get; set; }
         public byte[] SaltPassword { get; set; }
+        public bool IsVerified { get; set; }
         public DateTime AccountCreationDate { get; set; }
 
         public UserModel()

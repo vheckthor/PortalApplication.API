@@ -8,6 +8,8 @@ namespace PortalApplication.Infrastructure.DataAccess
          Task<UserModel> Register(UserModel user, string password);
          Task<UserModel> Login(string email, string password);
          Task<bool> UserExists(string email);
+         Task<UserModel> GetUser(int id);
+         Task<bool> VerifyUser(UserModel user);
          
     }
 }
