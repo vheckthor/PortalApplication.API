@@ -42,6 +42,7 @@ namespace PortalApplication.API.Controllers
                 Email = userRegisterDto.Email,
                 FirstName = userRegisterDto.FirstName,
                 LastName = userRegisterDto.LastName,
+                Username = userRegisterDto.Username
             };
 
             var createdUser = await _repo.Register(userToBeCreated, userRegisterDto.Password);

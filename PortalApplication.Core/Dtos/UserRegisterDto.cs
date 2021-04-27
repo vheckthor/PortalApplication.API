@@ -12,6 +12,8 @@ namespace PortalApplication.Core
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+        [Required]
+        public string Username { get; set; }
         
         [Required]
         [StringLength(40, MinimumLength = 8, ErrorMessage = "Password must be atleast 8 characters")]
