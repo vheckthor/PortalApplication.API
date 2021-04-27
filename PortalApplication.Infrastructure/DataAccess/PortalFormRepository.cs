@@ -58,7 +58,6 @@ namespace PortalApplication.Infrastructure.DataAccess
         public async Task<bool> CheckDuplicate(Expression<Func<PortalFormData, bool>> predicate)
         {
             var response  = await _dbContext.PortalFormDatas.FindAsync(predicate.Compile());
-
             return response !=null;
         }
     }
